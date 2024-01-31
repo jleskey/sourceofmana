@@ -8,6 +8,22 @@ var resources: Array[Resource] = []
 func _ready():
 	if not PluginUtil.is_part_of_edited_scene(self):
 		refresh()
+		var inspector = EditorInterface.get_inspector()
+		inspector.connect("property_edited", property_edited)
+		inspector.get_edited_object()
+
+
+func property_edited(_property: String):
+	# Only update the resource that changed
+	var inspected_object = EditorInterface.get_inspector().get_edited_object()
+	if inspected_object and inspected_object.resource_path.contains(ITEMS_FOLDER):
+		for i in resources.size():
+			var resource = resources[i]
+			print(resource.resource_path, inspected_object.resource_path)
+			if resource.resource_path == inspected_object.resource_path:
+				resources[i] = ResourceLoader.load(resource.resource_path)
+				showResources()
+				return
 
 func refresh():
 	load_resources()
