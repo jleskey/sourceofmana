@@ -37,6 +37,7 @@ var deathDelay : int					= 10
 # Signals
 signal ratio_updated
 
+signal level_up
 #
 func RefreshStats():
 	# Current Stats
@@ -113,3 +114,25 @@ func UpdateActiveStats(networkRID : int):
 
 func UpdatePersonalStats(networkRID : int):
 	Launcher.Network.UpdatePersonalStats(strength, vitality, agility, endurance, concentration, networkRID)
+
+#region Level and Experience
+
+func addExperience(points: float):
+	experience += points
+	tryLevelUp()
+
+# Manage level up
+func tryLevelUp(notify = true):
+	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
+	if experiencelNeeded == Experience.ERORR_MAX_LEVEL_REACHED:
+		return
+	if experience >= experiencelNeeded:
+		experience -= experiencelNeeded
+		level += 1
+		tryLevelUp(false)
+		# make sure the notification is only done after all levelups
+		if notify:
+			# TODO: Network notify of level up
+			level_up.emit()
+
+#endregion
