@@ -10,7 +10,7 @@ var OPTIONS = [
 var popup = get_popup()
 
 func _ready():
-	if not Engine.is_editor_hint():
+	if PluginUtil.is_part_of_edited_scene(self):
 		return
 	icon = EditorInterface.get_editor_theme().get_icon("ArrowDown", "EditorIcons")
 	popup.connect("index_pressed", _on_select)

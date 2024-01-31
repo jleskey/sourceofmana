@@ -6,7 +6,7 @@ const ITEMS_FOLDER = "res://data/items"
 var resources: Array[Resource] = []
 
 func _ready():
-	if Engine.is_editor_hint():
+	if not PluginUtil.is_part_of_edited_scene(self):
 		refresh()
 
 func refresh():

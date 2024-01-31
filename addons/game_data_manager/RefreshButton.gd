@@ -2,7 +2,7 @@
 extends Button
 
 func _ready():
-	if not Engine.is_editor_hint():
+	if PluginUtil.is_part_of_edited_scene(self):
 		return
 	icon = EditorInterface.get_editor_theme().get_icon("Reload", "EditorIcons")
 
