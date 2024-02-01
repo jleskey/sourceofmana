@@ -1,8 +1,7 @@
 extends Object
 class_name Experience
 
-#region _ExperienceTable 
-const __ExperienceTable = [
+const _experienceTable = [
 	# Level 1-9
 	9,
 	16,
@@ -153,9 +152,8 @@ const __ExperienceTable = [
 	1608019039,
 	2147483647
 ]
-#endregion
 
 const MAX_LEVEL_REACHED = 0
 
 static func GetNeededExperienceForNextLevel(currentLevel: int) -> int:
-	return __ExperienceTable[currentLevel] if currentLevel < __ExperienceTable.size() else MAX_LEVEL_REACHED
+	return _experienceTable[currentLevel] if currentLevel < _experienceTable.size() else MAX_LEVEL_REACHED
