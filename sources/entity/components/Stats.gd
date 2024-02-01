@@ -121,11 +121,10 @@ static func addExperience(agent: BaseAgent, points: float):
 	# Manage level up
 	var levelUpHappened = false
 	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(agent.stat.level)
-	while experiencelNeeded != Experience.MAX_LEVEL_REACHED:
-		if agent.stat.experience >= experiencelNeeded:
-			agent.stat.experience -= experiencelNeeded
-			agent.stat.level += 1
-			levelUpHappened = true
+	while experiencelNeeded != Experience.MAX_LEVEL_REACHED and agent.stat.experience >= experiencelNeeded:
+		agent.stat.experience -= experiencelNeeded
+		agent.stat.level += 1
+		levelUpHappened = true
 		experiencelNeeded = Experience.GetNeededExperienceForNextLevel(agent.stat.level)
 	if levelUpHappened:
 		# Network notify of level up
