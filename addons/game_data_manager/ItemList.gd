@@ -1,7 +1,7 @@
 @tool
 extends ItemList
 
-const ITEMS_FOLDER = "res://data/items"
+const ITEMS_FOLDER = Path.ItemDataRsc
 
 var resources: Array[Resource] = []
 
