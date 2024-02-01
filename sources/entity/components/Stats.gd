@@ -124,7 +124,7 @@ func addExperience(points: float):
 # Manage level up
 func tryLevelUp(notify = true):
 	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
-	if experiencelNeeded == Experience.ERORR_MAX_LEVEL_REACHED:
+	if experiencelNeeded == Experience.MAX_LEVEL_REACHED:
 		return
 	if experience >= experiencelNeeded:
 		experience -= experiencelNeeded

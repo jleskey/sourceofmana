@@ -1,8 +1,6 @@
 extends Object
 class_name Experience
 
-# TODO: think about a better place for the constants?
-
 #region _ExperienceTable 
 const __ExperienceTable = [
     # Level 1-9
@@ -157,11 +155,7 @@ const __ExperienceTable = [
 ]
 #endregion
 
-const ERORR_MAX_LEVEL_REACHED = 0
+const MAX_LEVEL_REACHED = 0
 
-static func GetNeededExperienceForNextLevel(currentLevel: int):
-    if currentLevel >= __ExperienceTable.size():
-        print_debug("GetNeededExperienceForNextLevel: max level reached")
-        return ERORR_MAX_LEVEL_REACHED
-    else:
-        return __ExperienceTable[currentLevel]
+static func GetNeededExperienceForNextLevel(currentLevel: int) -> int:
+    return __ExperienceTable[currentLevel] if currentLevel < __ExperienceTable.size() else MAX_LEVEL_REACHED
