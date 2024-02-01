@@ -122,17 +122,17 @@ func addExperience(points: float):
 	tryLevelUp()
 
 # Manage level up
-func tryLevelUp(notify = true):
+func tryLevelUp():
+	var levelUpHappened = false
 	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
-	if experiencelNeeded == Experience.MAX_LEVEL_REACHED:
-		return
-	if experience >= experiencelNeeded:
-		experience -= experiencelNeeded
-		level += 1
-		tryLevelUp(false)
-		# make sure the notification is only done after all levelups
-		if notify:
-			# TODO: Network notify of level up
-			level_up.emit()
+	while experiencelNeeded != Experience.MAX_LEVEL_REACHED:
+		if experience >= experiencelNeeded:
+			experience -= experiencelNeeded
+			level += 1
+			levelUpHappened = true
+		experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
+	if levelUpHappened:
+		# TODO: Network notify of level up
+		level_up.emit()
 
 #endregion
