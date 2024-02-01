@@ -37,7 +37,6 @@ var deathDelay : int					= 10
 # Signals
 signal ratio_updated
 
-signal level_up
 #
 func RefreshStats():
 	# Current Stats
@@ -117,22 +116,19 @@ func UpdatePersonalStats(networkRID : int):
 
 #region Level and Experience
 
-func addExperience(points: float):
-	experience += points
-	tryLevelUp()
-
-# Manage level up
-func tryLevelUp():
+static func addExperience(agent: BaseAgent, points: float):
+	agent.stat.experience += points
+	# Manage level up
 	var levelUpHappened = false
-	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
+	var experiencelNeeded = Experience.GetNeededExperienceForNextLevel(agent.stat.level)
 	while experiencelNeeded != Experience.MAX_LEVEL_REACHED:
-		if experience >= experiencelNeeded:
-			experience -= experiencelNeeded
-			level += 1
+		if agent.stat.experience >= experiencelNeeded:
+			agent.stat.experience -= experiencelNeeded
+			agent.stat.level += 1
 			levelUpHappened = true
-		experiencelNeeded = Experience.GetNeededExperienceForNextLevel(level)
+		experiencelNeeded = Experience.GetNeededExperienceForNextLevel(agent.stat.level)
 	if levelUpHappened:
-		# TODO: Network notify of level up
-		level_up.emit()
+		# Network notify of level up
+		Launcher.Network.Server.NotifyInstancePlayers(null, agent, "TargetLevelUp", [])
 
 #endregion

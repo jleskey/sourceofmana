@@ -87,4 +87,4 @@ static func ApplyXp(agent : BaseAgent):
 	var bonus : float = Formulas.GetXpBonus(agent.stat)
 	for attacker in agent.attackers:
 		var bonusScaled : int = int(bonus * agent.GetDamageRatio(attacker))
-		attacker.stat.addExperience(bonusScaled)
+		EntityStats.addExperience(attacker, bonusScaled)
