@@ -62,3 +62,28 @@ func Morph(notifyMorphing : bool):
 #
 func _specific_process():
 	UpdateStats()
+
+#
+func Killed(attacker: BaseAgent):
+	super.Killed(attacker)
+	# TODO: somehow find the right client to inform it to show respawn dialog
+	# timer for now
+	await get_tree().create_timer(6).timeout
+	Respawn()
+
+func Respawn():
+	push_warning("trigger respawn")
+	WorldAgent.PopAgent(self)
+	var spawn: SpawnObject = Launcher.World.defaultSpawn
+	self.position = spawn.spawn_position
+	self.SwitchInputMode(true)
+
+	# reset stats that were affected by dead
+	stat.health  = Launcher.Player.stat.current.maxHealth
+	stat.mana 	 = Launcher.Player.stat.current.maxMana
+	stat.stamina = Launcher.Player.stat.current.maxStamina
+	UpdateStats()
+
+	# TODO: make sure it starts up again.
+	Launcher.World.Spawn(spawn.map, self)
+

@@ -85,15 +85,13 @@ static func Healed(agent : BaseAgent, target : BaseAgent, skill : SkillData, rng
 
 static func Killed(agent : BaseAgent, target : BaseAgent):
 	Formulas.ApplyXp(target)
-	if target.aiTimer:
-		AI.SetState(target, AI.State.HALT)
-		Callback.SelfDestructTimer(target, target.stat.deathDelay, WorldAgent.RemoveAgent.bind(target))
+	target.Killed(agent)
 	Stopped(agent)
 
 static func Stopped(agent : BaseAgent):
 	if SkillCommons.HasActionInProgress(agent):
 		agent.SetSkillCastName("")
-		agent.actionTimer.stop()
+		agent.actionTimer.stop() # TODO: shouldn't this be Callback.ClearTimer(agent.actionTimer) ?
 		if agent.aiTimer:
 			AI.SetState(agent, AI.State.IDLE)
 
