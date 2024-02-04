@@ -101,13 +101,9 @@ func _ready():
 
 func chooseMessage():
 	$Margin/VBoxContainer/Label.text = deathMessages.pick_random()
-	center()
+	super.center()
 
 func _on_respawn_pressed():
 	# TODO: call respawn
 	# visible = false
 	chooseMessage()
-
-func center():
-	reset_size()
-	global_position = get_viewport_rect().size / 2 - get_rect().size / 2

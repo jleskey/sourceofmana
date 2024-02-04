@@ -164,3 +164,7 @@ func UpdateWindow(eventPosition : Vector2):
 
 func _on_CloseButton_pressed():
 	set_visible(false)
+
+func center():
+	reset_size()
+	global_position = get_viewport_rect().size / 2 - get_rect().size / 2
