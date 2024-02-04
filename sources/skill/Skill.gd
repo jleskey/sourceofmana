@@ -91,9 +91,10 @@ static func Killed(agent : BaseAgent, target : BaseAgent):
 static func Stopped(agent : BaseAgent):
 	if SkillCommons.HasActionInProgress(agent):
 		agent.SetSkillCastName("")
-		agent.actionTimer.stop() # TODO: shouldn't this be Callback.ClearTimer(agent.actionTimer) ?
+		Callback.ClearTimer(agent.actionTimer)
 		if agent.aiTimer:
 			AI.SetState(agent, AI.State.IDLE)
+
 
 static func Missed(agent : BaseAgent, target : BaseAgent):
 	if target == null:
