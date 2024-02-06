@@ -3,6 +3,7 @@ class_name PlayerAgent
 
 #
 var lastStat : EntityStats				= EntityStats.new()
+var canRespawn = false
 
 #
 static func GetEntityType() -> EntityCommons.Type: return EntityCommons.Type.PLAYER
@@ -66,13 +67,14 @@ func _specific_process():
 #
 func Killed(attacker: BaseAgent):
 	super.Killed(attacker)
-	# TODO: somehow find the right client to inform it to show respawn dialog
-	# timer for now
-	await get_tree().create_timer(6).timeout
-	Respawn()
+	canRespawn = true
+	# TODO: tell client to open dialog
 
 func Respawn():
-	push_warning("trigger respawn")
+	if not canRespawn:
+		push_warning("respawn failed, not dead or already in progress")
+		return
+	canRespawn = false
 	WorldAgent.PopAgent(self)
 	var spawn: SpawnObject = Launcher.World.defaultSpawn
 	self.position = spawn.spawn_position
