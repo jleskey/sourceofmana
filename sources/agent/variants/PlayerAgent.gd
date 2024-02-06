@@ -68,7 +68,7 @@ func Killed(attacker: BaseAgent):
 	super.Killed(attacker)
 
 func Respawn():
-	if not SkillCommons.IsAlive(self):
+	if SkillCommons.IsAlive(self):
 		push_warning("respawn failed, not dead")
 		return
 	WorldAgent.PopAgent(self)
