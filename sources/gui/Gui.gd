@@ -18,6 +18,7 @@ extends ServiceBase
 @onready var settingsWindow : WindowPanel		= $FloatingWindows/Settings
 @onready var emoteWindow : WindowPanel			= $FloatingWindows/Emote
 @onready var quitWindow : WindowPanel			= $FloatingWindows/Quit
+@onready var respawnWindow : WindowPanel		= $FloatingWindows/RespawnWindow
 
 @onready var chatContainer : ChatContainer		= $FloatingWindows/Chat/Margin/VBoxContainer
 @onready var emoteContainer : Container			= $FloatingWindows/Emote/ItemContainer/Grid

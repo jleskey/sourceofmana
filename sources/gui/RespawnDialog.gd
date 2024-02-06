@@ -104,7 +104,6 @@ func chooseMessage():
 	super.center()
 
 func _on_respawn_pressed():
-	# TODO: call respawn
-	# visible = false
 	chooseMessage()
 	Launcher.Network.TriggerRespawn()
+	visible = false
