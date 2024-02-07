@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcbmsnylwa6bb"]
+[gd_scene load_steps=3 format=3 uid="uid://b8frfkv2y8x6"]
 
 [ext_resource type="Theme" uid="uid://dhb6h35g1bk0x" path="res://data/themes/DefaultTheme.tres" id="1_xw25t"]
 [ext_resource type="Script" path="res://sources/gui/RespawnDialog.gd" id="2_l0vfw"]
@@ -15,6 +15,8 @@ offset_right = 189.0
 offset_bottom = 29.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_xw25t")
 script = ExtResource("2_l0vfw")
 
@@ -38,4 +40,5 @@ text = "Right now, you would just love to be resurrected."
 layout_mode = 2
 text = "Respawn"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Margin/VBoxContainer/Respawn" to="." method="_on_respawn_pressed"]

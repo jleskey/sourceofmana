@@ -62,6 +62,7 @@ func EnterLoginMenu():
 	menu.set_visible(false)
 	shortcuts.set_visible(false)
 	quitWindow.set_visible(false)
+	respawnWindow.EnableControl(false)
 
 	background.set_visible(true)
 	newsWindow.EnableControl(true)

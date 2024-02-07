@@ -1,6 +1,9 @@
 extends WindowPanel
 
-var deathMessages: Array[String] = [
+@onready var respawnLabel : Label = $Margin/VBoxContainer/Label
+@onready var respawnButton : Button = $Margin/VBoxContainer/Respawn
+
+var deathMessages: PackedStringArray = [
 	# TMW dead messages
 
 	"You are dead.",
@@ -95,15 +98,13 @@ var deathMessages: Array[String] = [
 	"If I try to get away, how long until I'm free? And if I don't come back here, will anyone remember me?", # Mana Source
 ]
 
-func _ready():
-	if not Engine.is_editor_hint():
-		call_deferred("load_death_messages")
-
-func chooseMessage():
-	$Margin/VBoxContainer/Label.text = deathMessages.pick_random()
-	super.center()
+#
+func _on_visibility_changed():
+	if respawnLabel and visible:
+		respawnLabel.text = deathMessages[randi() % deathMessages.size()]
+		Center()
+		respawnButton.call_deferred("grab_focus")
 
 func _on_respawn_pressed():
-	chooseMessage()
 	Launcher.Network.TriggerRespawn()
 	visible = false
