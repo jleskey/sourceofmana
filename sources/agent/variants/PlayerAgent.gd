@@ -64,24 +64,17 @@ func _specific_process():
 	UpdateStats()
 
 #
-func Killed(attacker: BaseAgent):
-	super.Killed(attacker)
-
 func Respawn():
 	if SkillCommons.IsAlive(self):
-		push_warning("respawn failed, not dead")
 		return
 	WorldAgent.PopAgent(self)
 	var spawn: SpawnObject = Launcher.World.defaultSpawn
-	self.position = spawn.spawn_position
-	self.SwitchInputMode(true)
+	position = spawn.spawn_position
+	ResetNav()
 
-	# reset stats that were affected by dead
-	stat.health  = Launcher.Player.stat.current.maxHealth
-	stat.mana 	 = Launcher.Player.stat.current.maxMana
-	stat.stamina = Launcher.Player.stat.current.maxStamina
-	UpdateStats()
+	# Reset stats that were affected by death
+	stat.health  = int(Launcher.Player.stat.current.maxHealth / 2.0)
+	stat.mana 	 = int(Launcher.Player.stat.current.maxMana / 2.0)
+	stat.stamina = int(Launcher.Player.stat.current.maxStamina / 2.0)
 
-	# TODO: make sure it starts up again.
 	Launcher.World.Spawn(spawn.map, self)
-

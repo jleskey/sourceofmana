@@ -62,23 +62,14 @@ var deathMessages: PackedStringArray = [
 	"GG",
 	"Better luck next time.",
 	"Everything is a dream.",
-	"Back to the Soul Menhir, I guess...",
-	"Oh dear, the Random Numbers are angry with you again.",
+	"Oh dear, the RNG is angry with you again.",
 	"Well... That happens, I guess.",
 	"That is just part of life-- err, death, I mean.",
 	"Are you enjoying lying on the ground?",
 	"Today is not your lucky day, it seems.",
 	"Dead already? But you were so young...",
-	"Get Rekt noob",
-	"I came to carry you back to the Soul Menhir. You can be the hero another day.",
 	"Next time, say thanks when you get off the bus.",
-	"Is this a bug...? No, your character just died. Try again.",
-	"Congrats, you've met Jesusalva! Now back to the Menhir, noob!",
-	"Legends of your greatness and bravery won't be remembered.",
-	"Don't be like manatauro.",
-	"The king of noobs salute you.",
 	"Walk towards the light.",
-	"Uhm, is it too late to use that healing item I had saved up?",
 	"And thus, you return to dust; Fulfilling the prophecy.",
 	"Do you want your noob certificate now or later?",
 	"One Tap.", # CSGO reference.
@@ -87,11 +78,8 @@ var deathMessages: PackedStringArray = [
 	"If you see an elevator, be sure to push the up button.", # TMW, sightly modified (if you die in -> if you see an)
 	"Well, that healing item was too awesome to use, anyway...", # TVTropes reference
 	"Hey hey, I wasn't done yet!", # The 'hey hey' is often spoken by Saulc
-	"Apana like...", # feel disgusting to play like the legendary apana
-	"Uh... Blame Saulc.", # Long running gag with devs: Everything is Saulc's fault. (Even if it's not)
 	"Why you bully me!", # CSGO S1mple twitch clip
-	"The cake is a lie", # Portal
-	"Medic!", # Team Fortress 2, Medic callout https://wiki.teamfortress.com/wiki/Heavy_voice_commands#Voice%20Menu%202
+	"The cake is a lie.", # Portal
 	"It is good day to be not dead!", # TF2 SMF Meme https://www.youtube.com/watch?v=oiuyhxp4w9I&ab_channel=AntoineDelak
 	"Well poop. Let's try not dying next time.", # WarZone 2100 #memes
 	"Outgunned.", # Operation Black Mesa

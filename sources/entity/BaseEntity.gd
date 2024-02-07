@@ -48,7 +48,7 @@ func Update(nextVelocity : Vector2, gardbandPosition : Vector2, nextOrientation 
 	entityState = nextState
 	entityOrientation = nextOrientation
 
-	if visual.skillCastName != nextSkillCastName:
+	if visual and interactive and visual.skillCastName != nextSkillCastName:
 		visual.skillCastName = nextSkillCastName
 		interactive.DisplayCast(self, nextSkillCastName)
 
